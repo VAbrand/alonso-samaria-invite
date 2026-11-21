@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#2C090F" />
   <title>Alonso & Samaria — 17 de Abril de 2027</title>
 
   <!-- Tipografías Editoriales -->
@@ -1023,6 +1024,578 @@
       font-size: 15px;
       color: var(--text-muted);
     }
+
+    /* =====================================================================
+       ✦ CAPA DE REFINAMIENTO VISUAL (se suma a la base, no la reemplaza)
+       ===================================================================== */
+    ::selection { background: rgba(197, 160, 89, 0.35); color: var(--burgundy-dark); }
+
+    /* Papel con textura sutil y luz cálida */
+    .invitation-wrapper {
+      background-image:
+        radial-gradient(ellipse at 50% 0%, rgba(255, 250, 240, 0.9), transparent 55%),
+        radial-gradient(rgba(90, 18, 29, 0.04) 1px, transparent 0);
+      background-size: 100% 100%, 24px 24px;
+    }
+
+    .invitation-wrapper::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 50;
+      opacity: 0.32;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .42  0 0 0 0 .3  0 0 0 0 .25  0 0 0 .5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    }
+
+    /* Sobre de apertura: halo dorado y sello con brillo */
+    .envelope-overlay {
+      background:
+        radial-gradient(circle at 50% 38%, rgba(197, 160, 89, 0.17) 0%, transparent 46%),
+        radial-gradient(circle at center, #2C090F 0%, #140507 100%);
+    }
+
+    .envelope-box { box-shadow: 0 30px 60px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(197, 160, 89, 0.18), inset 0 0 30px rgba(0, 0, 0, 0.35); }
+
+    .wax-seal { animation: sealGlow 3.2s ease-in-out infinite; }
+
+    @keyframes sealGlow {
+      0%, 100% { box-shadow: 0 6px 16px rgba(0,0,0,.45), 0 0 0 rgba(223,192,124,0), inset 0 2px 4px rgba(255,255,255,.45), inset 0 -3px 6px rgba(70,45,10,.6); }
+      50%      { box-shadow: 0 6px 16px rgba(0,0,0,.45), 0 0 26px rgba(223,192,124,.55), inset 0 2px 4px rgba(255,255,255,.45), inset 0 -3px 6px rgba(70,45,10,.6); }
+    }
+
+    .envelope-hint { text-shadow: 0 2px 14px rgba(197, 160, 89, 0.35); }
+
+    /* Polvo dorado flotante */
+    .gold-dust {
+      position: absolute;
+      bottom: -10px;
+      width: var(--s, 3px);
+      height: var(--s, 3px);
+      border-radius: 50%;
+      background: radial-gradient(circle, #F6E4B5 0%, #C5A059 60%, transparent 100%);
+      opacity: 0;
+      pointer-events: none;
+      animation: dustFloat var(--d, 12s) linear var(--delay, 0s) infinite;
+    }
+
+    @keyframes dustFloat {
+      0%   { transform: translate3d(0, 0, 0); opacity: 0; }
+      12%  { opacity: 0.9; }
+      85%  { opacity: 0.5; }
+      100% { transform: translate3d(var(--x, 20px), var(--y, -520px), 0); opacity: 0; }
+    }
+
+    .envelope-overlay .gold-dust { position: absolute; }
+
+    /* Botón de música con halo */
+    .music-toggle { border-color: rgba(223, 192, 124, 0.7); }
+    .music-toggle::after {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      border: 1px solid rgba(197, 160, 89, 0.55);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .music-toggle.playing::after { animation: ringPulse 2.6s ease-out infinite; }
+
+    @keyframes ringPulse {
+      0%   { transform: scale(0.85); opacity: 0.8; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+
+    /* Portada */
+    .hero-section { overflow: hidden; }
+
+    .hero-title {
+      background: linear-gradient(180deg, #8A2233 0%, #5A121D 55%, #3E0B13 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: none;
+      filter: drop-shadow(0 3px 6px rgba(90, 18, 29, 0.15));
+    }
+
+    .hero-supertitle, .hero-subtitle, .couple-names { text-shadow: 0 2px 10px rgba(197, 160, 89, 0.18); }
+
+    .photo-frame {
+      background: linear-gradient(145deg, #FFFDF8, #F3EBDD);
+      border: 1px solid rgba(197, 160, 89, 0.55);
+      box-shadow: 0 24px 46px rgba(42, 29, 31, 0.18), 0 2px 0 rgba(255, 255, 255, 0.8) inset;
+    }
+
+    .photo-frame::before {
+      content: '';
+      position: absolute;
+      inset: -9px;
+      border: 1px solid rgba(197, 160, 89, 0.4);
+      pointer-events: none;
+    }
+
+    .photo-frame::after {
+      content: '';
+      position: absolute;
+      inset: 10px;
+      pointer-events: none;
+      z-index: 2;
+      box-shadow: inset 0 0 60px rgba(42, 6, 12, 0.28);
+      background: linear-gradient(to top, rgba(62, 11, 19, 0.28), transparent 38%);
+    }
+
+    .couple-names .heart-icon { color: var(--gold-dark); text-shadow: 0 0 12px rgba(197, 160, 89, 0.5); }
+
+    .hero-quote { position: relative; padding-top: 18px; }
+    .hero-quote::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      width: 44px; height: 1px;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    /* Separador editorial con foil dorado */
+    .editorial-divider {
+      background:
+        radial-gradient(ellipse at 50% 50%, rgba(197, 160, 89, 0.16), transparent 65%),
+        linear-gradient(135deg, #3A0A12 0%, #5A121D 50%, #2B070D 100%);
+    }
+
+    .editorial-divider::before { border-color: rgba(223, 192, 124, 0.5); inset: 10px; }
+
+    .editorial-divider::after {
+      content: '';
+      position: absolute;
+      inset: 11px;
+      border: 1px solid rgba(197, 160, 89, 0.18);
+      transform: scale(0.975);
+      pointer-events: none;
+    }
+
+    .divider-monogram {
+      background: linear-gradient(120deg, #F6E4B5 0%, #DFC07C 35%, #FFF3D1 50%, #C5A059 70%, #F0D798 100%);
+      background-size: 220% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: foilShift 7s ease-in-out infinite alternate;
+    }
+
+    @keyframes foilShift {
+      0%   { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    /* Encabezados con ornamento dorado */
+    .section-script-dark::after {
+      content: '';
+      display: block;
+      width: 120px;
+      height: 12px;
+      margin: 6px auto 0;
+      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='12' viewBox='0 0 120 12'><path d='M0 6H48M72 6H120' stroke='%23C5A059' stroke-width='1'/><path d='M60 1L65 6L60 11L55 6Z' fill='none' stroke='%23C5A059' stroke-width='1'/><circle cx='50' cy='6' r='1.2' fill='%23C5A059'/><circle cx='70' cy='6' r='1.2' fill='%23C5A059'/></svg>") center / contain no-repeat;
+    }
+
+    .section-script-light {
+      background: linear-gradient(180deg, #FFF8E8 0%, #E8CF93 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.25));
+    }
+
+    /* Calendario */
+    .calendar-card {
+      position: relative;
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.75), rgba(250, 244, 233, 0.6));
+      border: 1px solid rgba(197, 160, 89, 0.4);
+      box-shadow: 0 16px 34px rgba(90, 18, 29, 0.09);
+    }
+
+    .calendar-card::before {
+      content: '';
+      position: absolute;
+      inset: 5px;
+      border: 1px solid rgba(90, 18, 29, 0.08);
+      pointer-events: none;
+    }
+
+    .wedding-heart-bg { stroke: #C5A059; stroke-width: 1; }
+
+    .count-box {
+      background: rgba(255, 255, 255, 0.5);
+      border-top: 1px solid rgba(197, 160, 89, 0.55);
+      border-bottom: 1px solid rgba(197, 160, 89, 0.55);
+      box-shadow: 0 8px 18px rgba(90, 18, 29, 0.05);
+    }
+
+    /* Ceremonia */
+    .ceremony-banner {
+      background-image:
+        radial-gradient(ellipse at 50% 0%, rgba(197, 160, 89, 0.22), transparent 62%),
+        radial-gradient(ellipse at 50% 100%, rgba(0, 0, 0, 0.28), transparent 60%);
+    }
+
+    .ceremony-banner::before { border-color: rgba(223, 192, 124, 0.4); }
+
+    .ceremony-banner::after {
+      content: '';
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(197, 160, 89, 0.18);
+      pointer-events: none;
+    }
+
+    .ceremony-hour { text-shadow: 0 0 22px rgba(223, 192, 124, 0.45); }
+
+    .btn-cream {
+      border: 1px solid rgba(197, 160, 89, 0.8);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+    }
+
+    .btn-cream:hover { background: linear-gradient(135deg, #FFFFFF, #F6E9C9); }
+
+    /* Vestimenta */
+    .dresscode-section { background: linear-gradient(180deg, rgba(255, 255, 255, 0.35), transparent 70%); }
+    .swatch-item { transition: transform 0.4s ease; }
+    .swatch-item:hover { transform: translateY(-3px); }
+
+    /* ---------- DATO IMPORTANTE: colores de la novia ---------- */
+    .eyebrow {
+      display: block;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 4px;
+    }
+
+    .etiquette-section {
+      padding: 50px 26px 54px;
+      text-align: center;
+      border-top: 1px solid rgba(197, 160, 89, 0.35);
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(197, 160, 89, 0.1), transparent 60%),
+        var(--cream-soft);
+    }
+
+    .etiquette-card {
+      position: relative;
+      max-width: 340px;
+      margin: 22px auto 0;
+      padding: 30px 24px 28px;
+      background: linear-gradient(160deg, #FFFDF9, #F8F1E4);
+      border: 1px solid rgba(197, 160, 89, 0.5);
+      box-shadow: 0 18px 38px rgba(90, 18, 29, 0.1);
+    }
+
+    .etiquette-card::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border: 1px solid rgba(90, 18, 29, 0.1);
+      pointer-events: none;
+    }
+
+    .light-swatches {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+
+    .light-swatch { display: flex; flex-direction: column; align-items: center; gap: 7px; }
+
+    .light-dot {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(155, 119, 51, 0.55);
+      box-shadow: 0 5px 12px rgba(42, 29, 31, 0.1), inset 0 0 0 3px rgba(255, 255, 255, 0.55);
+    }
+
+    .light-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .etiquette-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19.5px;
+      line-height: 1.5;
+      color: var(--text-main);
+    }
+
+    .etiquette-text strong { color: var(--burgundy); font-weight: 600; }
+
+    .etiquette-rule {
+      width: 44px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 18px auto;
+    }
+
+    .etiquette-subtext {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 17px;
+      line-height: 1.55;
+      color: var(--text-muted);
+    }
+
+    /* ---------- LLUVIA DE SOBRES ---------- */
+    .gift-banner {
+      position: relative;
+      overflow: hidden;
+      padding: 56px 30px 60px;
+      text-align: center;
+      color: var(--cream);
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(197, 160, 89, 0.2), transparent 60%),
+        linear-gradient(160deg, #4A0E18 0%, #2E070D 100%);
+    }
+
+    .gift-banner::before {
+      content: '';
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(223, 192, 124, 0.35);
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .gift-content { position: relative; z-index: 2; }
+
+    .eyebrow-light {
+      display: block;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #DFC07C;
+      margin-bottom: 4px;
+    }
+
+    .gift-envelope-icon { width: 74px; margin: 6px auto 20px; display: block; filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.35)); }
+
+    .gift-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      line-height: 1.55;
+      color: rgba(246, 241, 234, 0.92);
+      max-width: 320px;
+      margin: 0 auto 14px;
+    }
+
+    .gift-text em { color: #E8CF93; font-weight: 600; font-style: italic; }
+
+    .gift-note {
+      display: inline-block;
+      margin-top: 10px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 28px;
+      color: #E8CF93;
+    }
+
+    .rain-layer { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+
+    .rain-env {
+      position: absolute;
+      top: -30px;
+      width: 24px;
+      height: 16px;
+      background: linear-gradient(145deg, #FBF6EC, #E9DEC9);
+      border-radius: 2px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      animation: envRain var(--d, 9s) linear var(--delay, 0s) infinite paused;
+    }
+
+    .rain-env::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 62%;
+      background: linear-gradient(180deg, #DFC07C, #C5A059);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      border-radius: 2px 2px 0 0;
+    }
+
+    .gift-banner.visible .rain-env { animation-play-state: running; }
+
+    @keyframes envRain {
+      0%   { transform: translate3d(0, 0, 0) rotate(var(--r0, -20deg)) scale(var(--sc, 1)); opacity: 0; }
+      10%  { opacity: 0.55; }
+      88%  { opacity: 0.4; }
+      100% { transform: translate3d(var(--dx, 20px), var(--h, 560px), 0) rotate(var(--r1, 30deg)) scale(var(--sc, 1)); opacity: 0; }
+    }
+
+    /* RSVP y contacto */
+    .rsvp-banner {
+      position: relative;
+      background-image:
+        radial-gradient(ellipse at 50% 0%, rgba(197, 160, 89, 0.16), transparent 60%),
+        radial-gradient(ellipse at 50% 100%, rgba(0, 0, 0, 0.25), transparent 60%);
+    }
+
+    .rsvp-banner::before {
+      content: '';
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(223, 192, 124, 0.3);
+      pointer-events: none;
+    }
+
+    .btn-submit { border: 1px solid rgba(197, 160, 89, 0.8); }
+    .btn-submit:hover { background: linear-gradient(135deg, #FFFFFF, #F6E4B5); }
+
+    .form-input:focus { box-shadow: 0 0 0 3px rgba(223, 192, 124, 0.18); }
+
+    .art-card { background: linear-gradient(160deg, #FFFDF9, #F6EEE0); }
+    .whatsapp-pill { border-color: rgba(197, 160, 89, 0.7); }
+
+    .footer-note { position: relative; padding-top: 20px; }
+    .footer-note::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      width: 60px; height: 1px;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .gold-dust, .rain-env, .wax-seal, .divider-monogram, .music-toggle.playing::after { animation: none !important; }
+      .gold-dust, .rain-env { display: none; }
+    }
+
+    /* =====================================================================
+       ♪ NUESTRA CANCIÓN: reproductor en segundo plano + invitaciones sutiles
+       ===================================================================== */
+    .yt-holder {
+      position: fixed;
+      left: -320px;
+      bottom: 0;
+      width: 200px;
+      height: 200px;
+      opacity: 0;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .yt-holder iframe { width: 200px; height: 200px; border: 0; }
+
+    /* Disco de vinilo */
+    .vinyl {
+      width: 38px;
+      height: 38px;
+      flex: none;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, #E8CF93 0 3.5%, #7A1C2A 4.5% 17%, #0E0708 18% 21%, transparent 22%),
+        conic-gradient(from 30deg, transparent 0 18%, rgba(255, 255, 255, 0.16) 24%, transparent 30% 68%, rgba(255, 255, 255, 0.12) 74%, transparent 80%),
+        repeating-radial-gradient(circle, #130A0C 0 2px, #231517 3px 4px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(197, 160, 89, 0.45);
+      animation: vinylSpin 4.2s linear infinite;
+      animation-play-state: paused;
+    }
+
+    @keyframes vinylSpin { to { transform: rotate(360deg); } }
+
+    /* Pista sobre el sobre de apertura */
+    .envelope-sound-cue {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(246, 241, 234, 0.75);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: center;
+      animation: gentlePulse 2.8s infinite ease-in-out 0.6s;
+    }
+
+    .envelope-sound-cue .vinyl { width: 26px; height: 26px; animation-play-state: running; }
+
+    /* Cápsula flotante */
+    .music-cue {
+      position: fixed;
+      left: 50%;
+      bottom: 76px;
+      z-index: 950;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      max-width: min(310px, calc(100vw - 32px));
+      padding: 9px 18px 9px 10px;
+      border-radius: 50px;
+      color: var(--cream);
+      background: linear-gradient(135deg, rgba(62, 11, 19, 0.96), rgba(90, 18, 29, 0.96));
+      border: 1px solid rgba(223, 192, 124, 0.55);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.4);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, 24px) scale(0.96);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .music-cue.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, 0) scale(1);
+    }
+
+    .cue-text { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; }
+
+    .cue-text small {
+      font-size: 8.5px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #DFC07C;
+    }
+
+    .cue-text strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 17px;
+      color: var(--cream);
+    }
+
+    .music-cue .equalizer { display: none; margin-left: 2px; }
+    .music-cue.playing .equalizer { display: flex; }
+    .music-cue.playing .vinyl { animation-play-state: running; }
+    .music-cue.playing .equalizer span:nth-child(1) { animation: eq 0.9s infinite ease-in-out; }
+    .music-cue.playing .equalizer span:nth-child(2) { animation: eq 0.6s infinite ease-in-out 0.2s; }
+    .music-cue.playing .equalizer span:nth-child(3) { animation: eq 1.1s infinite ease-in-out 0.1s; }
+    .music-cue.playing .equalizer span:nth-child(4) { animation: eq 0.75s infinite ease-in-out 0.3s; }
+
+    /* Si el navegador bloqueó el audio: la cápsula late hasta que lo activan */
+    .music-cue.nudge .vinyl { animation-play-state: running; }
+    .music-cue.nudge { animation: cueNudge 2.4s ease-in-out infinite; }
+
+    @keyframes cueNudge {
+      0%, 100% { box-shadow: 0 14px 34px rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(223, 192, 124, 0.55); }
+      50%      { box-shadow: 0 14px 34px rgba(0, 0, 0, 0.4), 0 0 0 11px rgba(223, 192, 124, 0); }
+    }
+
+    .music-toggle.attention::after { animation: ringPulse 1.8s ease-out infinite; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .vinyl, .envelope-sound-cue, .music-cue.nudge, .music-toggle.attention::after { animation: none !important; }
+    }
   </style>
 </head>
 <body>
@@ -1045,7 +1618,21 @@
         </div>
       </div>
       <p class="envelope-hint">Toca el sello para abrir tu invitación</p>
+      <p class="envelope-sound-cue"><span class="vinyl" aria-hidden="true"></span>Sube el volumen · esta invitación tiene música</p>
     </div>
+  </div>
+
+  <!-- REPRODUCTOR DE YOUTUBE (segundo plano, solo audio): se configura con YT_URL en el script -->
+  <div class="yt-holder" aria-hidden="true"><div id="ytPlayer"></div></div>
+
+  <!-- CÁPSULA "NUESTRA CANCIÓN": invita a activar la música y luego se retira sola -->
+  <div class="music-cue" id="musicCue" role="button" tabindex="0" aria-live="polite" aria-label="Activar nuestra canción">
+    <span class="vinyl" aria-hidden="true"></span>
+    <span class="cue-text">
+      <small id="cueKicker">Nuestra canción</small>
+      <strong id="cueTitle">Baby, I’m Yours</strong>
+    </span>
+    <span class="equalizer" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
   </div>
 
   <!-- BOTÓN DE MÚSICA AMBIENTAL -->
@@ -1207,6 +1794,57 @@
       </div>
     </section>
 
+    <!-- 4.1 DATO IMPORTANTE: COLORES RESERVADOS PARA LA NOVIA -->
+    <section class="etiquette-section reveal" id="datoSection">
+      <span class="eyebrow">Un detalle con cariño</span>
+      <h3 class="section-script-dark">Dato Importante</h3>
+
+      <div class="etiquette-card">
+        <div class="light-swatches" aria-hidden="true">
+          <div class="light-swatch"><span class="light-dot" style="background:#FFFFFF"></span><span class="light-name">Blanco</span></div>
+          <div class="light-swatch"><span class="light-dot" style="background:#F7F1E3"></span><span class="light-name">Marfil</span></div>
+          <div class="light-swatch"><span class="light-dot" style="background:#EFE3CC"></span><span class="light-name">Crema</span></div>
+          <div class="light-swatch"><span class="light-dot" style="background:#E8D9BE"></span><span class="light-name">Champagne</span></div>
+        </div>
+
+        <p class="etiquette-text">
+          Con mucho cariño, te pedimos que el <strong>color blanco</strong> y los <strong>tonos claros</strong> se reserven únicamente para la novia.
+        </p>
+
+        <div class="etiquette-rule"></div>
+
+        <p class="etiquette-subtext">
+          Si deseas incluirlos, te agradeceremos que sea de manera muy sutil, en un pequeño detalle o accesorio. Gracias por cuidar este momento tan especial para ella.
+        </p>
+      </div>
+    </section>
+
+    <!-- 4.2 REGALOS: LLUVIA DE SOBRES -->
+    <section class="gift-banner reveal" id="giftSection">
+      <div class="rain-layer" id="rainLayer" aria-hidden="true"></div>
+
+      <div class="gift-content">
+        <span class="eyebrow-light">Obsequios</span>
+        <h3 class="section-script-light">Lluvia de Sobres</h3>
+
+        <svg class="gift-envelope-icon" viewBox="0 0 80 58" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="2" y="6" width="76" height="50" rx="3" fill="#FBF6EC" stroke="#C5A059" stroke-width="1.2"/>
+          <path d="M2 9 L40 36 L78 9" stroke="#C5A059" stroke-width="1.2" fill="#F1E6D0"/>
+          <path d="M2 54 L30 30 M78 54 L50 30" stroke="#C5A059" stroke-width="1" opacity="0.7"/>
+          <path d="M40 26c0 0-7-4.6-7-9.6 0-2.4 1.9-4.1 4.1-4.1 1.4 0 2.4.8 2.9 1.8.5-1 1.5-1.8 2.9-1.8 2.2 0 4.1 1.7 4.1 4.1 0 5-7 9.6-7 9.6z" fill="#5A121D"/>
+        </svg>
+
+        <p class="gift-text">
+          Tu presencia es el regalo más grande que podemos recibir.
+        </p>
+        <p class="gift-text">
+          Si deseas tener un detalle con nosotros, los obsequios se harán a través de la dinámica de <em>“lluvia de sobres”</em>.
+        </p>
+
+        <span class="gift-note">con todo nuestro cariño</span>
+      </div>
+    </section>
+
     <!-- 5. CONFIRMACIÓN DE ASISTENCIA (RSVP) -->
     <section class="rsvp-banner reveal" id="rsvpSection">
       <h3 class="rsvp-title">Queridos invitados</h3>
@@ -1299,22 +1937,225 @@
     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzueNbekG-mx70besD2TKtxSkRPBqwh0BUypV1gi-uIBdF5V3u1p_tehfF5VvPnfYzDWA/exec';
 
     /* ============================================================
-       2. GENERADOR DE MÚSICA ROMÁNTICA SUAVE (WEB AUDIO API)
+       2. MÚSICA DE FONDO: "BABY I'M YOURS" (REPRODUCTOR DE YOUTUBE)
+          - Pega abajo el enlace de YouTube de la versión que quieres.
+          - Corre en segundo plano (sin video visible) y se repite en bucle.
+          - Arranca al tocar el sello del sobre, con fundido suave.
+          - Si el navegador bloquea el audio, una cápsula con un disco de
+            vinilo invita a activarlo y cualquier toque en la página lo inicia.
+          - Si el enlace está vacío o el video no permite incrustarse, suena
+            la melodía romántica original (Web Audio) como respaldo.
        ============================================================ */
-    let audioCtx = null;
-    let isPlaying = false;
-    let melodyTimer = null;
+    const YT_URL        = 'https://www.youtube.com/watch?v=atYNqvZcQ3M&pp=ygUNYmFieSBpbSB5b3Vycw%3D%3D'; // ej. https://www.youtube.com/watch?v=XXXXXXXXXXX
+    const SONG_VOLUME   = 60;    // volumen final (0 a 100)
+    const SONG_START_AT = 0;     // segundo desde el que arranca la canción
+    const SONG_FADE_IN  = 3000;  // ms de fundido al entrar
+    const SONG_FADE_OUT = 900;   // ms de fundido al pausar
 
+    function parseYouTubeId(value) {
+      const text = String(value || '').trim();
+      const m = text.match(/(?:youtu\.be\/|[?&]v=|embed\/|shorts\/)([\w-]{11})/);
+      if (m) return m[1];
+      return /^[\w-]{11}$/.test(text) ? text : null;
+    }
+
+    const YT_ID = parseYouTubeId(YT_URL);
+
+    const musicToggle = document.getElementById('musicToggle');
+    const musicCue = document.getElementById('musicCue');
+    const cueKicker = document.getElementById('cueKicker');
+    const cueTitle = document.getElementById('cueTitle');
+
+    let isPlaying = false;     // la música está sonando (o debe sonar)
+    let userPaused = false;    // el invitado la pausó a propósito
+    let hasTried = false;      // ya se intentó iniciar al menos una vez
+    let ytPlayer = null;
+    let ytReady = false;
+    let ytFailed = !YT_ID;
+    let usingSong = false;
+    let synthActive = false;
+    let verifyTries = 0;
+    let fadeTimer = null;
+    let verifyTimer = null;
+    let cueTimer = null;
+    let melodyTimer = null;
+    let audioCtx = null;
+
+    /* ---------- Cápsula "Nuestra canción" ---------- */
+    function showCue(mode) {
+      clearTimeout(cueTimer);
+      const overlay = document.getElementById('envelopeOverlay');
+      if (overlay && !overlay.classList.contains('opened')) {
+        cueTimer = setTimeout(() => showCue(mode), 500); // espera a que el sobre termine de abrirse
+        return;
+      }
+      if (mode === 'nudge') {
+        cueKicker.textContent = 'Un detalle especial';
+        cueTitle.textContent = 'Toca para activar nuestra canción';
+      } else {
+        cueKicker.textContent = 'Sonando · nuestra canción';
+        cueTitle.textContent = 'Baby, I’m Yours';
+      }
+      musicCue.classList.toggle('nudge', mode === 'nudge');
+      musicCue.classList.toggle('playing', mode === 'playing');
+      musicCue.classList.add('show');
+      if (mode === 'playing') {
+        cueTimer = setTimeout(() => musicCue.classList.remove('show'), 7500);
+      }
+    }
+
+    function hideCue() {
+      clearTimeout(cueTimer);
+      musicCue.classList.remove('show', 'nudge', 'playing');
+    }
+
+    /* ---------- Reproductor de YouTube ---------- */
+    function loadYouTube() {
+      if (!YT_ID) return;
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      tag.onerror = () => onYouTubeProblem();
+      document.head.appendChild(tag);
+    }
+
+    window.onYouTubeIframeAPIReady = function () {
+      const vars = {
+        playsinline: 1, controls: 0, disablekb: 1, fs: 0, rel: 0,
+        modestbranding: 1, iv_load_policy: 3, loop: 1, playlist: YT_ID, start: SONG_START_AT
+      };
+      if (/^https?:$/.test(location.protocol)) vars.origin = location.origin;
+
+      ytPlayer = new YT.Player('ytPlayer', {
+        width: '200',
+        height: '200',
+        videoId: YT_ID,
+        playerVars: vars,
+        events: {
+          onReady: () => {
+            ytReady = true;
+            if (isPlaying) attemptPlay();
+          },
+          onStateChange: onPlayerStateChange,
+          onError: () => onYouTubeProblem()
+        }
+      });
+    };
+
+    function onYouTubeProblem() {
+      ytFailed = true;
+      usingSong = false;
+      if (isPlaying) {
+        playSynthFallback();
+        showCue('playing');
+      }
+    }
+
+    function onPlayerStateChange(e) {
+      const S = YT.PlayerState;
+      if (e.data === S.PLAYING) {
+        clearTimeout(verifyTimer);
+        if (userPaused) { ytPlayer.pauseVideo(); return; }
+        usingSong = true;
+        if (!isPlaying) {                       // arrancó tarde, tras mostrar la invitación
+          isPlaying = true;
+          musicToggle.classList.add('playing');
+          musicToggle.classList.remove('attention');
+        }
+        fadeSong(SONG_VOLUME, SONG_FADE_IN);
+        showCue('playing');
+      } else if (e.data === S.ENDED) {          // respaldo del bucle
+        ytPlayer.seekTo(SONG_START_AT, true);
+        ytPlayer.playVideo();
+      }
+    }
+
+    function fadeSong(target, ms, done) {
+      clearInterval(fadeTimer);
+      let from = 0;
+      try { from = ytPlayer.getVolume(); } catch (err) {}
+      const t0 = performance.now();
+      fadeTimer = setInterval(() => {
+        const p = Math.min(1, (performance.now() - t0) / ms);
+        try { ytPlayer.setVolume(Math.round(from + (target - from) * p)); } catch (err) {}
+        if (p >= 1) {
+          clearInterval(fadeTimer);
+          if (done) done();
+        }
+      }, 60);
+    }
+
+    function attemptPlay() {
+      try {
+        ytPlayer.unMute();
+        ytPlayer.setVolume(0);
+        ytPlayer.playVideo();
+      } catch (err) {}
+      clearTimeout(verifyTimer);
+      verifyTries = 0;
+      verifyTimer = setTimeout(verifyPlayback, 3200);
+    }
+
+    /* Si pasados unos segundos no suena, el navegador bloqueó el audio: invitamos con elegancia */
+    function verifyPlayback() {
+      if (!isPlaying || ytFailed) return;
+      let state = -1;
+      try { state = ytPlayer.getPlayerState(); } catch (err) {}
+      if (state === 1 || state === 3) return;   // sonando o cargando
+      if (!ytReady && verifyTries < 2) {        // conexión lenta: damos más tiempo
+        verifyTries++;
+        verifyTimer = setTimeout(verifyPlayback, 3000);
+        return;
+      }
+      isPlaying = false;
+      musicToggle.classList.remove('playing');
+      musicToggle.classList.add('attention');
+      showCue('nudge');
+    }
+
+    /* ---------- Control general ---------- */
     function startRomanticMusic() {
       if (isPlaying) return;
+      isPlaying = true;
+      userPaused = false;
+      hasTried = true;
+      musicToggle.classList.add('playing');
+      musicToggle.classList.remove('attention');
+
+      if (ytFailed) {
+        playSynthFallback();
+        showCue('playing');
+      } else if (ytReady) {
+        attemptPlay();
+      } else {
+        verifyTimer = setTimeout(verifyPlayback, 3200);  // onReady lanzará la reproducción
+      }
+    }
+
+    function stopRomanticMusic() {
+      isPlaying = false;
+      userPaused = true;
+      clearTimeout(verifyTimer);
+      clearTimeout(melodyTimer);
+      synthActive = false;
+      musicToggle.classList.remove('playing', 'attention');
+      hideCue();
+      if (usingSong && ytPlayer) {
+        fadeSong(0, SONG_FADE_OUT, () => {
+          if (!isPlaying) { try { ytPlayer.pauseVideo(); } catch (err) {} }
+        });
+      }
+    }
+
+    /* Respaldo: arpegio romántico suave (solo si YouTube no está disponible) */
+    function playSynthFallback() {
+      if (synthActive) return;
+      synthActive = true;
       if (!audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       }
       if (audioCtx.state === 'suspended') {
         audioCtx.resume();
       }
-      isPlaying = true;
-      document.getElementById('musicToggle').classList.add('playing');
 
       const chords = [
         [261.63, 329.63, 392.00, 493.88], // Cmaj7
@@ -1325,7 +2166,7 @@
 
       let step = 0;
       const playArpeggio = () => {
-        if (!isPlaying) return;
+        if (!isPlaying || !synthActive) return;
         const chord = chords[Math.floor(step / 4) % chords.length];
         const freq = chord[step % chord.length];
 
@@ -1353,19 +2194,36 @@
       playArpeggio();
     }
 
-    function stopRomanticMusic() {
-      isPlaying = false;
-      clearTimeout(melodyTimer);
-      document.getElementById('musicToggle').classList.remove('playing');
-    }
-
-    document.getElementById('musicToggle').addEventListener('click', () => {
+    musicToggle.addEventListener('click', () => {
       if (isPlaying) {
         stopRomanticMusic();
       } else {
         startRomanticMusic();
       }
     });
+
+    musicCue.addEventListener('click', () => { if (!isPlaying) startRomanticMusic(); });
+    musicCue.addEventListener('keydown', (e) => {
+      if ((e.key === 'Enter' || e.key === ' ') && !isPlaying) startRomanticMusic();
+    });
+
+    /* Si el audio fue bloqueado, el primer toque en cualquier parte de la invitación lo activa */
+    document.addEventListener('click', (e) => {
+      if (isPlaying || userPaused || !hasTried) return;
+      if (e.target.closest('#musicToggle, #musicCue')) return;
+      startRomanticMusic();
+    });
+
+    /* Pausa si el invitado cambia de pestaña o bloquea el teléfono */
+    document.addEventListener('visibilitychange', () => {
+      if (!usingSong || !isPlaying || !ytPlayer) return;
+      try {
+        if (document.hidden) ytPlayer.pauseVideo();
+        else ytPlayer.playVideo();
+      } catch (err) {}
+    });
+
+    loadYouTube();
 
     /* ============================================================
        3. ANIMACIÓN DE APERTURA DEL SOBRE 3D
@@ -1481,7 +2339,7 @@
       formData.append('acompanantes', document.getElementById('guestsCount').value);
       formData.append(
         'restricciones',
-        document.getElementById('dietatorNotes').value?.trim() || document.getElementById('dietaryNotes').value.trim() || 'Ninguna'
+        document.getElementById('dietaryNotes').value.trim() || 'Ninguna'
       );
 
       try {
@@ -1504,6 +2362,46 @@
         submitBtn.textContent = 'Confirmar asistencia';
       }
     });
+
+    /* ============================================================
+       8. DETALLES VISUALES: POLVO DORADO Y LLUVIA DE SOBRES
+       ============================================================ */
+    (function decorate() {
+      const rnd = (min, max) => Math.random() * (max - min) + min;
+
+      function sprinkleDust(container, amount, rise) {
+        for (let i = 0; i < amount; i++) {
+          const s = document.createElement('span');
+          s.className = 'gold-dust';
+          s.style.left = rnd(2, 98) + '%';
+          s.style.setProperty('--s', rnd(2, 4.5).toFixed(1) + 'px');
+          s.style.setProperty('--d', rnd(10, 20).toFixed(1) + 's');
+          s.style.setProperty('--delay', (-rnd(0, 18)).toFixed(1) + 's');
+          s.style.setProperty('--x', rnd(-30, 40).toFixed(0) + 'px');
+          s.style.setProperty('--y', '-' + rise + 'px');
+          container.appendChild(s);
+        }
+      }
+
+      sprinkleDust(document.getElementById('envelopeOverlay'), 22, Math.max(window.innerHeight, 600));
+      sprinkleDust(document.querySelector('.hero-section'), 16, 760);
+
+      const rain = document.getElementById('rainLayer');
+      const height = rain.parentElement.offsetHeight + 40 || 560;
+      for (let i = 0; i < 11; i++) {
+        const e = document.createElement('span');
+        e.className = 'rain-env';
+        e.style.left = rnd(3, 92) + '%';
+        e.style.setProperty('--d', rnd(7, 12).toFixed(1) + 's');
+        e.style.setProperty('--delay', (-rnd(0, 10)).toFixed(1) + 's');
+        e.style.setProperty('--dx', rnd(-40, 40).toFixed(0) + 'px');
+        e.style.setProperty('--r0', rnd(-35, 0).toFixed(0) + 'deg');
+        e.style.setProperty('--r1', rnd(10, 60).toFixed(0) + 'deg');
+        e.style.setProperty('--sc', rnd(0.75, 1.2).toFixed(2));
+        e.style.setProperty('--h', height + 'px');
+        rain.appendChild(e);
+      }
+    })();
   </script>
 </body>
 </html>
